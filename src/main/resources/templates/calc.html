@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>task</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/endecrypt.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <!--<script type="text/javascript" th:src="@{/js/endecryptCalc.js}"></script>-->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="body">
+    <div class="div-inline">
+        <button type="button" class="btn btn-default btn-sm" style="margin-top: 0px;">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="retrieve">
+        <div class="div-inline">
+            <label>Calc ID: </label>
+        </div>
+        <div class="div-inline calc-id">
+            <input type="text" class="form-control" id="calcId"/>
+        </div>
+        <div class="div-inline">
+            <button type="button" class="btn btn-default btn-sm" style="margin-top: 0px;">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+    <div>
+        <table id="calcTable" class="table table-hover table-bordered table-striped">
+        </table>
+    </div>
+</div>
+</body>
+</html>
