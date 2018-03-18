@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WebPageController {
 
     @RequestMapping("/task")
-    String calc() {
+    String task() {
         return "/task";
+    }
+
+    @RequestMapping("/task/insert")
+    String taskInsert() {
+        return "/taskForm";
     }
 }

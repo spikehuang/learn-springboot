@@ -21,7 +21,6 @@
         DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time,
         DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time
         FROM endecrypt_task_config
-        LIMIT 5
     </select>
 
     <select id="getEndecryptTask" resultMap="BaseResultMap" parameterType="java.lang.String">

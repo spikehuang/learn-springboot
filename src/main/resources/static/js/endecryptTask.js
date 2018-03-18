@@ -16,9 +16,13 @@ $(function() {
         }
     });
 
-    // $(".btn").on('click', function() {
-    //     alert("update button");
-    // });
+    $("#insertButton").click(function() {
+        location.href='/task/insert';
+    });
+
+    $("button").on('click', ".updateButton", function() {
+        alert("update button");
+    });
 
     function query() {
 
