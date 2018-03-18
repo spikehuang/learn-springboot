@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WebPageController {
 
-    @RequestMapping("/calc")
-    String calc() {
-        return "/calc";
+    @RequestMapping("/task")
+    String task() {
+        return "/task";
+    }
+
+    @RequestMapping("/task/insert")
+    String taskInsert() {
+        return "/taskForm";
     }
 }
