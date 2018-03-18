@@ -9,4 +9,6 @@ import java.util.List;
 public interface EndecryptTaskMapper {
 
     List<EndecryptTask> listEndecryptTasks();
+
+    EndecryptTask getEndecryptTask(String taskId);
 }

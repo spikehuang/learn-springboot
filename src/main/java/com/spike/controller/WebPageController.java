@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WebPageController {
 
-    @RequestMapping("/calc")
+    @RequestMapping("/task")
     String calc() {
-        return "/calc";
+        return "/task";
     }
 }

@@ -8,13 +8,13 @@
     <link rel="stylesheet" th:href="@{/css/endecrypt.css}"/>
     <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-    <!--<script type="text/javascript" th:src="@{/js/endecryptCalc.js}"></script>-->
+    <script type="text/javascript" th:src="@{/js/endecryptTask.js}"></script>
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
 <div class="body">
     <div class="div-inline">
-        <button type="button" class="btn btn-default btn-sm" style="margin-top: 0px;">
+        <button type="button" id="saveButton" class="btn btn-default btn-sm" style="margin-top: 0px;">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
     </div>
@@ -23,26 +23,29 @@
             <label>Calc ID: </label>
         </div>
         <div class="div-inline calc-id">
-            <input type="text" class="form-control" id="calcId"/>
+            <input type="text" class="form-control" id="taskId"/>
         </div>
         <div class="div-inline">
-            <button type="button" class="btn btn-default btn-sm" style="margin-top: 0px;">
+            <button type="button" id="queryButton" class="btn btn-default btn-sm" style="margin-top: 0px;">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
         </div>
     </div>
     <div>
-        <table id="calcTable" class="table table-hover table-bordered table-striped">
-            <tr>
-                <th>任务ID</th>
-                <th>类型</th>
-                <th>输入路径</th>
-                <th>输出路径</th>
-                <th>是否启用</th>
-                <th>创建时间</th>
-                <th>更新时间</th>
-                <th>操作</th>
-            </tr>
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>任务ID</th>
+                    <th>类型</th>
+                    <th>输入信息</th>
+                    <th>输出信息</th>
+                    <th>是否启用</th>
+                    <th>创建时间</th>
+                    <th>更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="taskTable"></tbody>
         </table>
     </div>
 </div>
