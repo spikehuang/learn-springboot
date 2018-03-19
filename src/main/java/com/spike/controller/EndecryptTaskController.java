@@ -3,9 +3,7 @@ package com.spike.controller;
 import com.spike.dao.EndecryptTaskMapper;
 import com.spike.model.EndecryptTask;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,23 @@ public class EndecryptTaskController {
     public EndecryptTask getEndecryptTask(@PathVariable("taskId") String taskId) {
 
         return endecryptTaskMapper.getEndecryptTask(taskId);
+    }
+
+    @PostMapping(value = "/endecrypt/task", consumes = "application/json;charset=utf-8")
+    public int saveEndecryptTask(@RequestBody EndecryptTask endecryptTask) {
+
+        return endecryptTaskMapper.saveEndecryptTask(endecryptTask);
+    }
+
+    @DeleteMapping(value = "/endecrypt/task/{taskId}")
+    public int removeEndecryptTaskByTaskId(@PathVariable("taskId") String taskId) {
+
+        return endecryptTaskMapper.removeEndecryptTaskByTaskId(taskId);
+    }
+
+    @PutMapping(value = "/endecrypt/task", consumes = "application/json;charset=utf-8")
+    public int updateEndecryptTaskByTaskId(@RequestBody EndecryptTask endecryptTask) {
+
+        return endecryptTaskMapper.updateEndecryptTaskByTaskId(endecryptTask);
     }
 }

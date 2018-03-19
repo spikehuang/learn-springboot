@@ -11,4 +11,10 @@ public interface EndecryptTaskMapper {
     List<EndecryptTask> listEndecryptTasks();
 
     EndecryptTask getEndecryptTask(String taskId);
+
+    int saveEndecryptTask(EndecryptTask endecryptTask);
+
+    int removeEndecryptTaskByTaskId(String taskId);
+
+    int updateEndecryptTaskByTaskId(EndecryptTask endecryptTask);
 }

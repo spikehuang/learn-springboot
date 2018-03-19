@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/endecrypt.css}"/>
     <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/endecryptTaskSave.js}"></script>
+    <script type="text/javascript" th:src="@{/js/endecryptTaskUpdate.js}"></script>
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
@@ -17,7 +17,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">任务ID</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="taskId"/>
+                <input type="text" class="form-control" id="taskId" th:disabled="taskId" th:value="${taskId}"/>
             </div>
         </div>
         <div class="form-group">
@@ -60,7 +60,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button id="saveButton" type="button" class="btn btn-primary">保存</button>
+                <button id="saveButton" type="button" class="btn btn-primary">更新</button>
                 <button id="returnButton" type="button" class="btn btn-default" style="margin-left: 50px">返回</button>
             </div>
         </div>
