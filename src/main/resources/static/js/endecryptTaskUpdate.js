@@ -1,8 +1,26 @@
 $(function() {
 
+    var taskId = $("#taskId").val();
+
+    $(document).ready(function() {
+        query();
+    });
+
     $("#returnButton").click(function() {
         location.href='/task';
     });
+
+    function query() {
+        $.get(
+            "/endecrypt/task/" + taskId,
+            function(data) {
+                $("input[name='typeOptions'][value=" + data.type + "]").attr("checked",true);
+                $("#inputInfo").val(data.inputInfo);
+                $("#outputInfo").val(data.outputInfo);
+                $("input[name='enabledOptions'][value=" + data.enabled + "]").attr("checked",true);
+            }
+        );
+    }
 
     $("#saveButton").click(function() {
         var taskId = $("#taskId").val();
@@ -20,12 +38,12 @@ $(function() {
 
         $.ajax({
             url: "/endecrypt/task",
-            type: "POST",
+            type: "PUT",
             contentType: "application/json",
             dataType: "JSON",
             data: JSON.stringify(endecrypt),
             success: function() {
-                alert("添加成功！");
+                alert("修改成功！");
                 location.href='/task';
             }
         });

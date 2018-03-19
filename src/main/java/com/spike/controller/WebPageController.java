@@ -1,7 +1,10 @@
 package com.spike.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class WebPageController {
@@ -15,4 +18,12 @@ public class WebPageController {
     String taskInsert() {
         return "/taskForm";
     }
+
+    @RequestMapping("/task/update")
+    String taskUpdate(HttpServletRequest request, ModelMap map) {
+        String taskId = request.getParameter("taskId");
+        map.put("taskId", taskId);
+        return "/taskUpdateForm";
+    }
+
 }

@@ -20,8 +20,38 @@ $(function() {
         location.href='/task/insert';
     });
 
-    $("button").on('click', ".updateButton", function() {
-        alert("update button");
+    $("tbody").on('click', ".updateButton", function() {
+        var updateTaskId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().html();
+        // var updateType = $(this).parent().prev().prev().prev().prev().prev().prev().html();
+        // var updateInputInfo = $(this).parent().prev().prev().prev().prev().prev().html();
+        // var updateOutputInfo = $(this).parent().prev().prev().prev().prev().html();
+        // var updateEnabled = $(this).parent().prev().prev().prev().html();
+        // var updateEndecrypt = {
+        //     "updateTaskId": updateTaskId,
+        //     "updateType": updateType,
+        //     "updateInputInfo": updateInputInfo,
+        //     "updateOutputInfo": updateOutputInfo,
+        //     "updateEnabled": updateEnabled
+        // };
+
+        location.href='/task/update?taskId=' + updateTaskId;
+
+        // $("#taskId").val(updateTaskId);
+        // $("input[name='typeOptions'][value=" + updateType + "]").attr("checked",true);
+        // $("#inputInfo").val(updateinputInfo);
+        // $("#outputInfo").val(updateoutputInfo);
+        // $("input[name='enabledOptions'][value=" + updateEnabled + "]").attr("checked",true);
+
+    });
+
+    $("tbody").on('click', ".removeButton", function() {
+        var removeTaskId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().html();
+        $.ajax({
+            url: "/endecrypt/task/" + removeTaskId,
+            type: "delete"
+        });
+        alert("删除成功！");
+        query();
     });
 
     function query() {
@@ -34,7 +64,7 @@ $(function() {
     		function(data) {
 
                 for (var i = 0; i < data.length; i++) {
-                    tableCode += "<tr><td>" + data[i].taskId + "</td>";
+                    tableCode += "<tr><td class = 'taskId'>" + data[i].taskId + "</td>";
                     tableCode += "<td>" + data[i].type + "</td>";
                     tableCode += "<td>" + data[i].inputInfo + "</td>";
                     tableCode += "<td>" + data[i].outputInfo + "</td>";
@@ -57,7 +87,7 @@ $(function() {
     		"/endecrypt/task/" + taskId,
     		function(data) {
 
-                tableCode += "<tr><td>" + data.taskId + "</td>";
+                tableCode += "<tr><td class = 'taskId'>" + data.taskId + "</td>";
                 tableCode += "<td>" + data.type + "</td>";
                 tableCode += "<td>" + data.inputInfo + "</td>";
                 tableCode += "<td>" + data.outputInfo + "</td>";

@@ -21,6 +21,7 @@
         DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time,
         DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time
         FROM endecrypt_task_config
+        ORDER BY create_time, update_time
     </select>
 
     <select id="getEndecryptTask" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -35,5 +36,33 @@
         FROM endecrypt_task_config
         WHERE task_id = #{taskId, jdbcType = VARCHAR}
     </select>
+
+    <insert id="saveEndecryptTask" parameterType="com.spike.model.EndecryptTask">
+        INSERT INTO endecrypt_task_config
+        (task_id, type, input_info, output_info, enabled, create_time, update_time)
+        VALUES
+        (#{taskId, jdbcType = VARCHAR},
+        #{type, jdbcType = VARCHAR},
+        #{inputInfo, jdbcType = VARCHAR},
+        #{outputInfo, jdbcType = VARCHAR},
+        #{enabled, jdbcType = VARCHAR},
+        UNIX_TIMESTAMP(NOW()),
+        UNIX_TIMESTAMP(NOW()))
+    </insert>
+
+    <delete id="removeEndecryptTaskByTaskId" parameterType="java.lang.String" >
+        DELETE FROM endecrypt_task_config
+        where task_id = #{taskId, jdbcType=VARCHAR}
+    </delete>
+
+    <update id="updateEndecryptTaskByTaskId" parameterType="com.spike.model.EndecryptTask" >
+        UPDATE endecrypt_task_config
+        SET type = #{type, jdbcType=VARCHAR},
+        input_info = #{inputInfo, jdbcType=VARCHAR},
+        output_info = #{outputInfo, jdbcType=VARCHAR},
+        enabled = #{enabled, jdbcType=VARCHAR},
+        update_time = UNIX_TIMESTAMP(NOW())
+        WHERE task_id = #{taskId, jdbcType=VARCHAR}
+    </update>
 
 </mapper>
