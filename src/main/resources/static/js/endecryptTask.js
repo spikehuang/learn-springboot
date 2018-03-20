@@ -64,24 +64,36 @@ $(function() {
 
     function queryOne(taskId) {
 
-    	$("#taskTable").html("");
-    	tableCode = "";
+        $.get(
+            "/endecrypt/isExist/" + taskId,
+            function(result) {
+                if (result == false) {
+                    alert("未查询到该任务ID!");
+                    // query();
+                } else {
 
-    	$.get(
-    		"/endecrypt/task/" + taskId,
-    		function(data) {
+                    $("#taskTable").html("");
+                    tableCode = "";
 
-                tableCode += "<tr><td class = 'taskId'>" + data.taskId + "</td>";
-                tableCode += "<td>" + data.type + "</td>";
-                tableCode += "<td>" + data.inputInfo + "</td>";
-                tableCode += "<td>" + data.outputInfo + "</td>";
-                tableCode += "<td>" + data.enabled + "</td>";
-                tableCode += "<td>" + data.createTime + "</td>";
-                tableCode += "<td>" + data.updateTime + "</td><td><button type='button' class='btn btn-primary btn-xs updateButton'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></button>&nbsp;&nbsp;<button type='button' class='btn btn-danger btn-xs removeButton'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>";
+                    $.get(
+                        "/endecrypt/task/" + taskId,
+                        function(data) {
 
-                $("#taskTable").html(tableCode);
-    		}
-    	);
+                            tableCode += "<tr><td class = 'taskId'>" + data.taskId + "</td>";
+                            tableCode += "<td>" + data.type + "</td>";
+                            tableCode += "<td>" + data.inputInfo + "</td>";
+                            tableCode += "<td>" + data.outputInfo + "</td>";
+                            tableCode += "<td>" + data.enabled + "</td>";
+                            tableCode += "<td>" + data.createTime + "</td>";
+                            tableCode += "<td>" + data.updateTime + "</td><td><button type='button' class='btn btn-primary btn-xs updateButton'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></button>&nbsp;&nbsp;<button type='button' class='btn btn-danger btn-xs removeButton'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>";
+
+                            $("#taskTable").html(tableCode);
+                        }
+                    );
+                }
+            }
+        );
+
     }
 
 });

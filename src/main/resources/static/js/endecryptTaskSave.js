@@ -37,8 +37,10 @@ $(function() {
             function(result) {
                 if (result == true) {
                     $("#existInfo").text("该任务ID已存在！");
+                    $(".form-group:first").addClass("has-error");
                 } else {
                     $("#existInfo").text("");
+                    $(".form-group:first").removeClass("has-error");
                 }
             }
         );
