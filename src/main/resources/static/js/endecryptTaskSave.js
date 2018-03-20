@@ -31,4 +31,17 @@ $(function() {
         });
     });
 
+    $("input#taskId").blur(function() {
+        $.get(
+            "/endecrypt/isExist/" + $("#taskId").val(),
+            function(result) {
+                if (result == true) {
+                    $("#existInfo").text("该任务ID已存在！");
+                } else {
+                    $("#existInfo").text("");
+                }
+            }
+        );
+    });
+
 });

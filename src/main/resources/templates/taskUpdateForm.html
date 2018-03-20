@@ -25,10 +25,10 @@
             <div class="col-sm-5">
                 <div class="radio">
                     <label class="radio-inline">
-                        <input type="radio" name="typeOptions" id="typeRadio1" value="encrypt"/> 加密
+                        <input type="radio" name="typeOptions" id="typeRadio1" th:disabled="encrypt" value="encrypt"/> 加密
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="typeOptions" id="typeRadio2" value="decrypt"/> 解密
+                        <input type="radio" name="typeOptions" id="typeRadio2" th:disabled="decrypt" value="decrypt"/> 解密
                     </label>
                 </div>
             </div>

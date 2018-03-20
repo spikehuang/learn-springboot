@@ -21,36 +21,20 @@ $(function() {
     });
 
     $("tbody").on('click', ".updateButton", function() {
-        var updateTaskId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().html();
-        // var updateType = $(this).parent().prev().prev().prev().prev().prev().prev().html();
-        // var updateInputInfo = $(this).parent().prev().prev().prev().prev().prev().html();
-        // var updateOutputInfo = $(this).parent().prev().prev().prev().prev().html();
-        // var updateEnabled = $(this).parent().prev().prev().prev().html();
-        // var updateEndecrypt = {
-        //     "updateTaskId": updateTaskId,
-        //     "updateType": updateType,
-        //     "updateInputInfo": updateInputInfo,
-        //     "updateOutputInfo": updateOutputInfo,
-        //     "updateEnabled": updateEnabled
-        // };
-
-        location.href='/task/update?taskId=' + updateTaskId;
-
-        // $("#taskId").val(updateTaskId);
-        // $("input[name='typeOptions'][value=" + updateType + "]").attr("checked",true);
-        // $("#inputInfo").val(updateinputInfo);
-        // $("#outputInfo").val(updateoutputInfo);
-        // $("input[name='enabledOptions'][value=" + updateEnabled + "]").attr("checked",true);
-
+        var updateTaskId = $(this).parent().siblings(".taskId").html();
+        location.href='/task/update/' + updateTaskId;
     });
 
     $("tbody").on('click', ".removeButton", function() {
-        var removeTaskId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().html();
-        $.ajax({
-            url: "/endecrypt/task/" + removeTaskId,
-            type: "delete"
-        });
-        alert("删除成功！");
+        var removeTaskId = $(this).parent().siblings(".taskId").html();
+
+        if (confirm("确定删除任务[" + removeTaskId + "]吗？")) {
+            $.ajax({
+                url: "/endecrypt/task/" + removeTaskId,
+                type: "delete"
+            });
+            alert("删除任务[" + removeTaskId + "]成功！");
+        }
         query();
     });
 

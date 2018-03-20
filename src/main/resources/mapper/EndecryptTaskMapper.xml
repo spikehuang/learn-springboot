@@ -7,8 +7,8 @@
         <result column="input_info" property="inputInfo" jdbcType="VARCHAR" />
         <result column="output_info" property="outputInfo" jdbcType="VARCHAR" />
         <result column="enabled" property="enabled" jdbcType="VARCHAR" />
-        <result column="create_time" property="createTime" jdbcType="VARCHAR" />
-        <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+        <result column="create_time_normal" property="createTime" jdbcType="VARCHAR" />
+        <result column="update_time_normal" property="updateTime" jdbcType="VARCHAR" />
     </resultMap>
 
     <select id="listEndecryptTasks" resultMap="BaseResultMap">
@@ -18,8 +18,8 @@
         input_info,
         output_info,
         enabled,
-        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time,
-        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
         FROM endecrypt_task_config
         ORDER BY create_time, update_time
     </select>
@@ -31,8 +31,8 @@
         input_info,
         output_info,
         enabled,
-        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time,
-        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
         FROM endecrypt_task_config
         WHERE task_id = #{taskId, jdbcType = VARCHAR}
     </select>
