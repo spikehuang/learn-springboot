@@ -42,4 +42,9 @@ public class EndecryptTaskController {
 
         return endecryptTaskMapper.updateEndecryptTaskByTaskId(endecryptTask);
     }
+
+    @GetMapping("/endecrypt/isExist/{taskId}")
+    public boolean isExist(@PathVariable("taskId") String taskId) {
+        return endecryptTaskMapper.getEndecryptTask(taskId) != null;
+    }
 }

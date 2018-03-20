@@ -2,6 +2,7 @@ package com.spike.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +20,8 @@ public class WebPageController {
         return "/taskForm";
     }
 
-    @RequestMapping("/task/update")
-    String taskUpdate(HttpServletRequest request, ModelMap map) {
-        String taskId = request.getParameter("taskId");
+    @RequestMapping("/task/update/{taskId}")
+    String taskUpdate(@PathVariable("taskId") String taskId, ModelMap map) {
         map.put("taskId", taskId);
         return "/taskUpdateForm";
     }
