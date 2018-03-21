@@ -27,11 +27,14 @@ $(function() {
             success: function() {
                 alert("添加成功！");
                 location.href='/task';
+            },
+            error: function() {
+                flash("#taskId", 8, 10, 100);
             }
         });
     });
 
-    $("input#taskId").blur(function() {
+    $("input#taskId")[0].oninput = function() {
         $.get(
             "/endecrypt/isExist/" + $("#taskId").val(),
             function(result) {
@@ -44,6 +47,22 @@ $(function() {
                 }
             }
         );
-    });
+    };
+
+    function flash(obj, time, range, speed) {
+            var $panel = $(obj);
+            var offset = $panel.offset() - $panel.width();
+            var x = offset.left;
+            var y = offset.top;
+            for (var i = 1; i <= time; i++) {
+                if (i % 2 == 0) {
+                    $panel.animate({left: '+' + range + 'px'}, speed);
+                } else {
+                    $panel.animate({left: '-' + range + 'px'}, speed);
+                }
+            }
+            $panel.animate({left: 0}, speed);
+            $panel.offset({top: y, left: x});
+    }
 
 });
