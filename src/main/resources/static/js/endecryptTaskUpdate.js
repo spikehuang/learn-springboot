@@ -43,8 +43,20 @@ $(function() {
             dataType: "JSON",
             data: JSON.stringify(endecrypt),
             success: function() {
-                alert("修改成功！");
-                location.href='/task';
+                $.alert({
+                    type:'green',
+                    title: '系统提示',
+                    content: '修改成功！',
+                    icon:'glyphicon glyphicon-ok-sign',
+                    buttons: {
+                        OK: {
+                            text: "确认",
+                            action: function() {
+                                location.href='/task';
+                            }
+                        }
+                    }
+                });
             }
         });
     });

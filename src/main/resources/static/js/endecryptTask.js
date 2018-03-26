@@ -28,14 +28,41 @@ $(function() {
     $("tbody").on('click', ".removeButton", function() {
         var removeTaskId = $(this).parent().siblings(".taskId").html();
 
-        if (confirm("确定删除任务[" + removeTaskId + "]吗？")) {
-            $.ajax({
-                url: "/endecrypt/task/" + removeTaskId,
-                type: "delete"
-            });
-            alert("删除任务[" + removeTaskId + "]成功！");
-        }
-        query();
+        $.confirm({
+            type: "blue",
+            title: "系统提示",
+            content: "确定删除任务[ " + removeTaskId + " ]吗？",
+            icon:'glyphicon glyphicon-question-sign',
+            buttons: {
+                confirm: {
+                	text: "确认",
+                	btnClass: "btn-blue",
+                	action: function() {
+                        $.ajax({
+                            url: "/endecrypt/task/" + removeTaskId,
+                            type: "delete"
+                        });
+                        $.alert({
+                            type: "green",
+                            title: "系统提示",
+                            content: "删除任务[ " + removeTaskId + " ]成功！",
+                            icon:'glyphicon glyphicon-ok-sign',
+                            buttons: {
+                                OK: {
+                                    text: "确认",
+                                    action : function() {
+                                        query();
+                                    }
+                                }
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: "取消"
+                }
+            }
+        });
     });
 
     function query() {
@@ -68,8 +95,17 @@ $(function() {
             "/endecrypt/isExist/" + taskId,
             function(result) {
                 if (result == false) {
-                    alert("未查询到该任务ID!");
-                    // query();
+                    $.alert({
+                        type:'red',
+                        title: '系统提示',
+                        content: '未查找到该任务ID！',
+                        icon:'glyphicon glyphicon-alert',
+                        buttons: {
+                            OK: {
+                                text: "确认"
+                            }
+                        }
+                    });
                 } else {
 
                     $("#taskTable").html("");
