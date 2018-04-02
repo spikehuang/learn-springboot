@@ -6,6 +6,9 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
   thymeleaf:
     cache: false
+  output:
+    ansi:
+      enabled: ALWAYS
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
